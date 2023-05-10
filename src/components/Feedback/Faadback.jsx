@@ -6,14 +6,11 @@ class Feedback extends React.Component {
         initialGood: 0,
         initialNeutral: 0,
         initialBad: 0,
-        initialTotal: 0,
-
     }
     state = {
         good: this.props.initialGood,
         neutral: this.props.initialNeutral,
         bad: this.props.initialBad,
-        total: this.props.initialTotal,
     }
 
     handleGood = () => { 
@@ -32,16 +29,19 @@ class Feedback extends React.Component {
         }))
     };
     countTotalFeedback = () => {
-        this.setState(( )=> ({
-            total: this.state.good + this.state.neutral + this.state.bad
-      
-        }))
+        const total = this.state.good + this.state.neutral + this.state.bad;
+        return total;
+    }
+    
+    countPositiveFeedbackPercentage = () => {
+        const PositivePercentage = Math.round((this.state.good * 100) / this.countTotalFeedback());
+        return PositivePercentage;
     };
-    // countPositiveFeedbackPercentage();
     
 
     render() {
-        return (       
+        
+        return (     
             <div>
             < span > Please leave feedback </span >
             <div> 
@@ -55,15 +55,15 @@ class Feedback extends React.Component {
                         <li>Goog:{this.state.good}</li>
                         <li>Neutral:{this.state.neutral}</li>
                         <li>Bad:{this.state.bad}</li>
-                        <li>Total:{this.total}</li>
-                        <li>Positive feedback:%</li>
+                        <li>Total:{this.countTotalFeedback()}</li>
+                        <li>Positive feedback:{ this.countPositiveFeedbackPercentage()}%</li>
                     </ul>
             </div>
             </div>
             
         
         );
-    }
+};
 }
 
 export default Feedback;
