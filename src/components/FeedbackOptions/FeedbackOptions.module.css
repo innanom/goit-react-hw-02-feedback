@@ -1,0 +1,13 @@
+.feedback_btn {
+display: flex;
+gap: 15px;
+}
+.btn {
+    font-size: 16px;
+    padding: 5px 15px;
+    border: 1px;
+    border-radius: 10%;
+}
+.btn:hover {
+background-color: rgba(13, 53, 231, 0.452);
+}
